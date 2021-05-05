@@ -9,12 +9,14 @@ const App = () => {
   const [age, setAge] = useState('');
   const [search, setSearch] = useState('');
   const [myArray, updateMyArray] = useState(JSON.parse(localStorage.getItem('mytime')) || []);
-  const [count, setCount] = useState(JSON.parse(localStorage.getItem('mytime')).length||1);
+  const [count, setCount] = useState(1);
   const [filteredPerson, setFilteredPerson] = useState([]);
 
 
   const onClick = () => {
-    setCount(count => count + 1);
+
+setCount(count=>count+1)
+ 
     let myData = {
       name: name,
       surname: surname,
@@ -22,7 +24,7 @@ const App = () => {
       count: count
     };
 
-    updateMyArray([...myArray, myData])
+    updateMyArray([...myArray,myData])
     setsurName('');
     setName('')
     setAge('')
@@ -32,7 +34,14 @@ const App = () => {
 
 
   useEffect(() => {
+   
+   if(myArray.length===0){
+  localStorage.clear()
+   } else{
     localStorage.setItem("mytime", JSON.stringify(myArray))
+   }
+
+   
     setFilteredPerson(
       myArray.filter((person) =>
         person.name.toLowerCase().includes(search.toLocaleLowerCase()) ||
@@ -51,8 +60,8 @@ const App = () => {
         <input type='text' onChange={(e) => { setName(e.target.value) }} value={name} placeholder='Name' />
         <input type='text' onChange={(e) => { setsurName(e.target.value) }} value={surname} placeholder='Surname' />
         <input type='number' onChange={(e) => { setAge(e.target.value) }} value={age} placeholder='Age' />
-        <input type="button" className='btn-success' onClick={onClick} value="Add" />
-        <input type="text" placeholder="Search" value={search} onChange={(e) => setSearch(e.target.value)} />
+        <input type="button" className='btn-success' onClick={onClick} value="Add" disabled={name.length===0} />
+        <input type="text" placeholder="Search" value={search} onChange={(e) => setSearch(e.target.value)}  />
       </div>
       <div>
         <table className='table-one table table-dark ' style={{ width: '55%', margin: 'auto' }}>
