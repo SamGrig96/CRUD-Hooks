@@ -9,7 +9,7 @@ const App = () => {
   const [age, setAge] = useState('');
   const [search, setSearch] = useState('');
   const [myArray, updateMyArray] = useState(JSON.parse(localStorage.getItem('mytime')) || []);
-  const [count, setCount] = useState(1);
+  const [count, setCount] = useState(JSON.parse(localStorage.getItem('mytime')).length||1);
   const [filteredPerson, setFilteredPerson] = useState([]);
 
 
