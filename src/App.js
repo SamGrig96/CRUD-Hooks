@@ -79,7 +79,7 @@ const App = () => {
 
 
 const Person = (props) => {
-  const { name, surname, age, count, index } = props;
+  const { name, surname, age, } = props;
 
   return (
     <div>
