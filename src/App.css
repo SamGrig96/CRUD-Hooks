@@ -1,0 +1,25 @@
+.App {
+  text-align: center;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  width: 100%;
+}
+.table-two{
+  padding-top: 15px;
+}
+.App input {
+  margin-left: 10px;
+}
+
+th{
+  width: 200px;
+ 
+}
+td{
+  width: 200px;
+  align-items: center;
+  
+}
+tr{
+  width: 200px;
+}
