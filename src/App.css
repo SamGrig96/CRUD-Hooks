@@ -11,15 +11,7 @@
   margin-left: 10px;
 }
 
-th{
-  width: 200px;
- 
-}
-td{
-  width: 200px;
-  align-items: center;
-  
-}
-tr{
-  width: 200px;
+.table-dark td, .table-dark th, .table-dark thead th {
+  border-color: #454d55;
+  width: 190px;
 }
