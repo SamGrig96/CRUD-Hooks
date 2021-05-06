@@ -8,24 +8,32 @@ const App = () => {
   const [surname, setsurName] = useState('');
   const [age, setAge] = useState('');
   const [search, setSearch] = useState('');
-  const [myArray, updateMyArray] = useState(JSON.parse(localStorage.getItem('mytime')) || []);
+  const [myArray, setupdateMyArray] = useState(JSON.parse(localStorage.getItem('mytime')) || []);
   const [filteredPerson, setFilteredPerson] = useState([]);
 
 
   const onClick = () => {
+
     let myData = {
       name: name,
       surname: surname,
       age: age,
 
+
     };
 
-    updateMyArray([...myArray, myData])
+    setupdateMyArray([...myArray, myData])
     setsurName('');
     setName('')
     setAge('')
 
   };
+  const removeItem = (id) => {
+
+    setupdateMyArray(myArray.filter((person) => myArray.indexOf(person) !== id))
+
+
+  }
 
 
 
@@ -46,7 +54,7 @@ const App = () => {
 
 
     );
-  }, [search, name, surname, age]);
+  }, [search, name, surname, age, myArray]);
 
   return [
     <div>
@@ -54,7 +62,7 @@ const App = () => {
         <input type='text' onChange={(e) => { setName(e.target.value) }} value={name} placeholder='Name' />
         <input type='text' onChange={(e) => { setsurName(e.target.value) }} value={surname} placeholder='Surname' />
         <input type='number' onChange={(e) => { setAge(e.target.value) }} value={age} placeholder='Age' />
-        <input type="button" className='btn-success' onClick={onClick} value="Add" disabled={name.length === 0} />
+        <input type="button" className='btn-success' onClick={onClick} value="Add" disabled={name.length === 0 && surname.length === 0 && age.length === 0} />
         <input type="text" placeholder="Search" value={search} onChange={(e) => setSearch(e.target.value)} />
       </div>
       <div>
@@ -69,7 +77,7 @@ const App = () => {
           </thead>
         </table>
         {filteredPerson.map((persons, index) => (
-          <Person key={index} {...persons} index={index} />))}
+          <Person key={index} {...persons} index={index} delete={removeItem} />))}
       </div>
 
     </div>
@@ -90,6 +98,7 @@ const Person = (props) => {
             <td>{name}</td>
             <td>{surname}</td>
             <td>{age}</td>
+            <td><button className="btn btn-danger" onClick={() => props.delete(props.index)}>Delete</button></td>
           </tr>
         </tbody>
 
