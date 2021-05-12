@@ -67,7 +67,6 @@ export default function Login(props) {
                         type="password"
                         {...register('password', { required: true })} />
                 </div>
-
                 <div className={classes.root}>
                     <ThemeProvider theme={theme}>
                         <Button type='submit' color="secondary" placeholder='LogIn'>LogIn</Button>
