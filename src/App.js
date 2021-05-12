@@ -1,8 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import PersonInputs from './components/PersonInputs/PersonInputs';
+import { BrowserRouter as Router, Redirect, Route, Switch, } from "react-router-dom";
+import Login from './components/Login/Login';
 
 const App = () => {
+<<<<<<< HEAD
   const [name, setName] = useState('');
   const [surname, setsurName] = useState('');
   const [age, setAge] = useState('');
@@ -87,4 +91,19 @@ const App = () => {
                 );
               };
               
+=======
+  const [isAuth,setIsAuth] =useState(false)
+  return (
+    <div>
+      <Router>
+        <Switch> 
+          <Route path='/user'>{isAuth?<PersonInputs/>:<Redirect to='/'/>}</Route>
+          <Route exact path="/" component={() => <Login isAuth={isAuth} setIsAuth={setIsAuth} />} />
+        </Switch>
+      </Router>
+    </div>
+  );
+}
+
+>>>>>>> 8cbced1 (second commit)
 export default App;
