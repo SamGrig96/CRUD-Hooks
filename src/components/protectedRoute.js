@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react'
-import { useHistory,Redirect,Route } from 'react-router-dom'
+import React from 'react'
+import { Redirect,Route } from 'react-router-dom'
 
 function PrivateRoute ({component: Component, isAuth, ...rest}) {
     return (
       <Route
         {...rest}
-        render={(props) => props.isAuth===true
+        render={(props) => isAuth
           ? <Component {...props} />
           : <Redirect to={{pathname: '/', state: {from: props.location}}} />}
       />

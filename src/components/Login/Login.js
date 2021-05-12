@@ -6,7 +6,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles'
 import allData from '../user-list.json'
-import { useHistory } from "react-router-dom"
+// import { useHistory } from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -28,7 +28,7 @@ export default function Login(props) {
     const classes = useStyles();
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [error, setError] = useState('')
-    let history = useHistory();
+   
     const onSubmit = (data) => {
         let allDatas = allData.map(user => (user.username))
         let allDataspassword = allData.map(user => (user.password))
@@ -36,8 +36,8 @@ export default function Login(props) {
         if ((allDatas.indexOf(data.firstName) !== -1) && (allDataspassword.indexOf(data.password) !== -1)) {
             console.log(props)
             props.test()
-            console.log(props.isAuth)
-            // window.location.pathname='/user'
+            window.location.pathname='/user'
+
         }
         else {
             setError('Invalid User!!')
