@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import PersonInputs from './components/PersonInputs/PersonInputs';
-import { BrowserRouter as Router, Redirect, Route, Switch, } from "react-router-dom";
+import { BrowserRouter as Router,Route, Switch, } from "react-router-dom";
 import Login from './components/Login/Login';
 import PrivateRoute from './components/protectedRoute'
 
@@ -17,7 +17,7 @@ const App = () => {
     <div>
       <Router>
         <Switch> 
-          <PrivateRoute path='/user' isAuth={isAuth}  Component={PersonInputs}/>
+          <PrivateRoute path='/user' isAuth={isAuth}  component={PersonInputs}/>
           <Route exact path="/" component={() => <Login test={test} isAuth={isAuth} />} />
         </Switch>
       </Router>
