@@ -8,7 +8,7 @@ const PersonInputs = () => {
   const [surname, setSurName] = useState('');
   const [age, setAge] = useState('');
   const [search, setSearch] = useState('');
-  const [editable,SetEditable] = useState(false)
+  const [editable, SetEditable] = useState(false)
   const [myArray, setUpdateMyArray] = useState(JSON.parse(localStorage.getItem('mytime')) || []);
   const [filteredPerson, setFilteredPerson] = useState([]);
 
@@ -19,7 +19,7 @@ const PersonInputs = () => {
       surname: surname,
       age: age,
     };
-  
+
 
     setUpdateMyArray([...myArray, myData])
     setSurName('');
@@ -37,12 +37,12 @@ const PersonInputs = () => {
     }
   }
 
-   const updateItem = () =>{
-     SetEditable(!editable)
-     console.log(editable)
-   }
-   
-   useEffect(() => {
+  const updateItem = () => {
+    SetEditable(!editable)
+    console.log(editable)
+  }
+
+  useEffect(() => {
     if (myArray.length === 0) {
       localStorage.clear()
     } else {
@@ -78,9 +78,11 @@ const PersonInputs = () => {
               <th>Edit</th>
             </tr>
           </thead>
-        </table>
-        {filteredPerson.map((persons, index) => (
-          <Person key={index} {...persons} index={index} delete={removeItem}  updateItem={updateItem} />))}
+          <tbody>
+            {filteredPerson.map((persons, index) => (
+              <Person key={index} {...persons} index={index} delete={removeItem} updateItem={updateItem} />))}
+              </tbody>
+          </table>
       </div>
     </div>
   );

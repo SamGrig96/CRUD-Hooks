@@ -7,8 +7,6 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles'
 import allData from '../user-list.json'
 
-
-
 const useStyles = makeStyles((theme) => ({
     root: {
         '& > *': {
@@ -41,8 +39,7 @@ export default function Login(props) {
             setError('Invalid User!!')
         }
     };
-
-
+    
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
             <div style={{ marginLeft: '40%' }}>
