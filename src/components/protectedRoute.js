@@ -1,22 +1,15 @@
 import React, { useEffect } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useHistory,Redirect,Route } from 'react-router-dom'
 
-const ProtectedRoute = (props) => {
-    let Cmp=props.Cmp;
-    const history =useHistory()
-    
-    useEffect(() => {
-        if(!localStorage.getItem('user-info')){
-            history.push('/')
-            console.log(true)
-        }
-        else{
-            history.push('/user') 
-        }}, [history]);
+function PrivateRoute ({component: Component, isAuth, ...rest}) {
     return (
-    <div>
-        <Cmp/>
-    </div>
+      <Route
+        {...rest}
+        render={(props) => props.isAuth===true
+          ? <Component {...props} />
+          : <Redirect to={{pathname: '/', state: {from: props.location}}} />}
+      />
     )
-}
-export default ProtectedRoute
+  }
+
+export default PrivateRoute;
