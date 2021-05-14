@@ -9,7 +9,7 @@ function PrivateRoute({ component: Component, isAuth, ...rest }) {
     return (
         <Route
             {...rest}
-            render={(props) => <Component {...props} />}
+            render={props => <Component {...props} />}
         />
     )
 }
