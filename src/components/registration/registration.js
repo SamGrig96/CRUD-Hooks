@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form'
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 import { createMuiTheme, makeStyles } from '@material-ui/core/styles'
-import  {ThemeProvider} from '@material-ui/styles'
+import { ThemeProvider } from '@material-ui/styles'
 import { Link, useHistory } from 'react-router-dom'
 import '../../App.css'
 
@@ -30,7 +30,7 @@ export default function Registartion() {
     const classes = useStyles()
     const { register, formState: { errors }, handleSubmit } = useForm()
     const [error, setError] = useState('')
-    const validPassword =  new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%&])(?=.{8,})");
+    const validPassword = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%&])(?=.{8,})");
     const history = useHistory()
     const [user] = useState(JSON.parse(localStorage.getItem('user')) || [])
 
@@ -97,7 +97,7 @@ export default function Registartion() {
                 </div>
                 <div className={classes.root}>
                     <ThemeProvider theme={theme}>
-                        <Button type="submit" color="secondary" >Registration</Button><br/>
+                        <Button type="submit" color="secondary" >Registration</Button><br />
                         <Link to='/'><Button className='btn-name' style={{ color: '#f54f5f' }} type="submit"  >Login</Button></Link>
                     </ThemeProvider>
                 </div>

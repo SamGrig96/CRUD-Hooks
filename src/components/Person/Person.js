@@ -13,7 +13,7 @@ const Person = (props) => {
             <td><button className="btn btn-danger" onClick={() => props.delete(props.index)}>Delete</button></td>
             <td><button className='btn btn-primary' onClick={() => props.updateItem()}>Edit</button></td>
         </tr>
-  );
+    );
 };
 
 export default Person

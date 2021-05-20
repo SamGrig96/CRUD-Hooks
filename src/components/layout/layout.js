@@ -20,10 +20,10 @@ const Layout = () => {
 
     return (
         <div>
-            
-            <PrivateRoute path = "/user" isAuth={isAuth} component={PersonInputs} />
-            <Route exact path = "/" component={() => <Login protectedChange={protectedChange} isAuth={isAuth} />} />
-            <Route exact path = '/registration' component ={Registration} />
+
+            <PrivateRoute path="/user" isAuth={isAuth} component={PersonInputs} />
+            <Route exact path="/" component={() => <Login protectedChange={protectedChange} isAuth={isAuth} />} />
+            <Route exact path='/registration' component={Registration} />
         </div>
     )
 }

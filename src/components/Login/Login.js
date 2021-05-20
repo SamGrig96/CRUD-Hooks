@@ -36,11 +36,11 @@ export default function Login(props) {
 
         if ((usersName.indexOf(data.firstName) !== -1)) {
             let indexUser = usersName.indexOf(data.firstName)
-            
+
             if (passwordHash.verify(`${data.password}`, usersPassword[indexUser])) {
                 props.protectedChange()
-            }else{
-            setError('Invalid Password!')
+            } else {
+                setError('Invalid Password!')
             }
 
         } else {
