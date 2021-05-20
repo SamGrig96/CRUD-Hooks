@@ -2,8 +2,31 @@ import React, { useState, useEffect } from 'react';
 import '../../App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Person from '../Person/Person'
+import Button from '@material-ui/core/Button'
+import { createMuiTheme, makeStyles } from '@material-ui/core/styles'
+import { ThemeProvider } from '@material-ui/styles'
+import {  useHistory } from 'react-router-dom'
+
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+    },
+  },
+}))
+
+const theme = createMuiTheme({
+  palette: {
+    secondary: {
+      main: '#ff7043',
+      
+    },
+  },
+})
 
 const PersonInputs = () => {
+  const classes = useStyles()
   const [name, setName] = useState('');
   const [surname, setSurName] = useState('');
   const [age, setAge] = useState('');
@@ -11,6 +34,8 @@ const PersonInputs = () => {
   const [editable, SetEditable] = useState(false)
   const [myArray, setUpdateMyArray] = useState(JSON.parse(localStorage.getItem('mytime')) || []);
   const [filteredPerson, setFilteredPerson] = useState([]);
+  const history = useHistory()
+
 
   const onClick = () => {
 
@@ -21,11 +46,15 @@ const PersonInputs = () => {
     };
 
 
+
     setUpdateMyArray([...myArray, myData])
     setSurName('');
     setName('')
     setAge('')
   };
+  const logout = () => {
+    history.push('/')
+  }
 
   const removeItem = (id) => {
     let confirmation = window.confirm('You want to delete')
@@ -39,15 +68,15 @@ const PersonInputs = () => {
 
   const updateItem = () => {
     SetEditable(!editable)
-    console.log(editable)
+
   }
 
   useEffect(() => {
     if (myArray.length === 0) {
-      localStorage.clear()
     } else {
       localStorage.setItem("mytime", JSON.stringify(myArray))
     }
+
 
     setFilteredPerson(
       myArray.filter((person) =>
@@ -81,8 +110,13 @@ const PersonInputs = () => {
           <tbody>
             {filteredPerson.map((persons, index) => (
               <Person key={index} {...persons} index={index} delete={removeItem} updateItem={updateItem} />))}
-              </tbody>
-          </table>
+          </tbody>
+        </table>
+      </div>
+      <div className={classes.root} style={{marginLeft:'50%'}}>
+        <ThemeProvider theme={theme}>
+          <Button type="submit" color="secondary" placeholder="LogOut" onClick={logout}>LogOut</Button>
+        </ThemeProvider>
       </div>
     </div>
   );
